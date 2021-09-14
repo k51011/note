@@ -18,8 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/{any}', function() {
-    return view('index');
-}
-)->where('any', '.*');
+Route::get('/notes/create', 'NoteController@create');
+Route::get('/', 'NoteController@index');
+Route::post('/notes', 'NoteController@store');
