@@ -31,4 +31,17 @@ class NoteController extends Controller
     {
         return view('show')->with(['note' => $note]);
     }
+    
+    public function edit(Note $note)
+    {
+        return view('edit')->with(['note' => $note]);
+    }
+    
+    public function update(Request $request, Note $note)
+    {
+        $input_note = $request['note'];
+        $note->fill($input_note)->save();
+
+        return redirect('/notes/' . $note->id);
+    }
 }
