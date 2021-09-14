@@ -11,7 +11,7 @@
         <div class='notes'>
             @foreach ($notes as $note)
                 <div class='note'>
-                    <h2 class='title'>タイトル：{{ $note->title }}</h2>
+                    <h2 class='title'><a href="/notes/{{ $note->id }}">タイトル：{{ $note->title }}</a></h2>
                     <p class='content'>内容：{{ $note->content }}</p>
                     <p class='category'>カテゴリーID：{{ $note->category_id }}</p>
                     
