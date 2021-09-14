@@ -24,8 +24,10 @@
                 <p>{{ $note->category_id }}</p>    
             </div>
         </div>
+        <p class="edit">[<a href="/notes/{{ $note->id }}/edit">編集</a>]</p>
         <div class="footer">
             <a href="/">戻る</a>
         </div>
+        
     </body>
 </html>
