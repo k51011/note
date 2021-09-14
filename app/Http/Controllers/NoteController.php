@@ -23,7 +23,12 @@ class NoteController extends Controller
         $note->fill($input);
         $note->user_id = auth()->user()->id;
         $note->save();
-        // return redirect('/notes/' . $note->id);
-        return redirect('/');
+        return redirect('/notes/' . $note->id);
+        // return redirect('/');
+    }
+    
+    public function show(Note $note)
+    {
+        return view('show')->with(['note' => $note]);
     }
 }
