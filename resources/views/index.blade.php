@@ -18,6 +18,6 @@
                 </div>
             @endforeach
         </div>
-        [<a href='/notes/create'>create</a>]
+        <p class='create'>[<a href='/notes/create'>create</a>]</p>
     </body>
 </html>

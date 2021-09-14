@@ -24,6 +24,7 @@
                 </div>
                 <input type="submit" value="保存">
             </form>
+            <div class='back'>[<a href='/notes/{{ $note->id }}'>戻る</a>]</div>
         </div>
     </body>
 </html>
