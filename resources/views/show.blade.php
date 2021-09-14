@@ -9,6 +9,13 @@
         <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
+        <p class="edit">[<a href="/notes/{{ $note->id }}/edit">編集</a>]</p>
+        <form action="/notes/{{ $note->id }}" id="form_delete" method="POST">
+            {{ csrf_field() }}
+            {{ method_field('delete') }}
+            <input type="submit" style="display:none">
+            <p class='delete'>[<span onclick="return deleteNote(this);">削除</span>]</p>
+        </form>
         <h1 class="title">
             {{ $note->title }}
         </h1>
@@ -24,10 +31,17 @@
                 <p>{{ $note->category_id }}</p>    
             </div>
         </div>
-        <p class="edit">[<a href="/notes/{{ $note->id }}/edit">編集</a>]</p>
+        
         <div class="footer">
             <a href="/">戻る</a>
         </div>
-        
+        <script>
+            function deleteNote(e) {
+                'use strict';
+                if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                    document.getElementById('form_delete').submit();
+                }
+            }
+        </script>
     </body>
 </html>
