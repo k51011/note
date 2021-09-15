@@ -11,15 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home'); 
 Route::get('/notes/create', 'NoteController@create');
-Route::get('/', 'NoteController@index');
+Route::get('/', 'NoteController@index')->middleware('auth');
 Route::get('/notes/{note}', 'NoteController@show');
 Route::post('/notes', 'NoteController@store');
 Route::get('/notes/{note}/edit', 'NoteController@edit');
