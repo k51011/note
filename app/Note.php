@@ -16,5 +16,9 @@ class Note extends Model
         'user_id'
     ];
     
+    public function getPaginateByLimit(int $limit_count = 4)
+    {
+        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
 
 }

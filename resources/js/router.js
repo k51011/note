@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 
 // ページコンポーネントをインポートする
 import NoteList from './pages/NoteList.vue'
+import NoteDetail from './pages/NoteDetail.vue'
+import NoteEdit from './pages/NoteEdit.vue'
 
 // VueRouterプラグインを使用する
 // これによって<RouterView />コンポーネントなどを使うことができる
@@ -13,7 +15,20 @@ const routes = [
   {
     path: '/',
     component: NoteList
-  }
+  },
+  
+  {
+    path: '/notes/:id',
+    component: NoteDetail,
+    props: true
+  },
+  
+  {
+    path: '/notes/:id/edit',
+    component: NoteEdit,
+    props: true
+  },
+  
 ]
 
 // VueRouterインスタンスを作成する

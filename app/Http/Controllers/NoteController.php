@@ -9,17 +9,28 @@ class NoteController extends Controller
 {
     public function index(Note $note)
     {
-        return view('index')->with(['notes' => $note->get()]);  
+        return view('index')->with(['notes' => $note->getPaginateByLimit()]);  
     }
     
-    public function create()
+    public function indexnote(Note $note)
     {
-        return view('create');
+        return $note->get();
     }
+    
+    public function show(String $id, Note $note)
+    {   
+        $note = Note::where('id', $id)->first();
+        return $note;
+    }
+    
+    // public function create()
+    // {
+    //     return view('create');
+    // }
     
     public function store(Request $request, Note $note)
     {
-        $input = $request['note'];
+        $input = $request->input();
         $note->fill($input);
         $note->user_id = auth()->user()->id;
         $note->save();
@@ -27,28 +38,33 @@ class NoteController extends Controller
         // return redirect('/');
     }
     
-    public function show(Note $note)
-    {
-        return view('show')->with(['note' => $note]);
-    }
+    // public function show(Note $note)
+    // {
+    //     return view('show')->with(['note' => $note]);
+    // }
     
-    public function edit(Note $note)
-    {
-        return view('edit')->with(['note' => $note]);
-    }
+    // public function edit(Note $note)
+    // {
+    //     return view('edit')->with(['note' => $note]);
+    // }
     
     public function update(Request $request, Note $note)
     {
-        $input_note = $request['note'];
+        $input_note = $request->input();
         $note->fill($input_note)->save();
-
-        return redirect('/notes/' . $note->id);
+        // return redirect('/notes/' . $note->id); 
+    
+        
     }
     
-    public function destroy(Note $note)
+    // public function destroy(Note $note)
+    // {
+    //     $note->delete();
+    //     return redirect('/');
+    // }
+    public function destroy($id)
     {
-        $note->delete();
-        return redirect('/');
+        Note::where("id",$id)->delete();
     }
     
 }
