@@ -15,11 +15,18 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home'); 
-Route::get('/notes/create', 'NoteController@create');
+// Route::get('/home', 'HomeController@index')->name('home'); 
+// Route::get('/notes/create', 'NoteController@create');
 Route::get('/', 'NoteController@index')->middleware('auth');
-Route::get('/notes/{note}', 'NoteController@show');
+// Route::get('/notes/{note}', 'NoteController@show');
 Route::post('/notes', 'NoteController@store');
-Route::get('/notes/{note}/edit', 'NoteController@edit');
+// Route::put('/notes/update', 'NoteController@update');
+// Route::put('/notes/update', 'NoteController@update');
 Route::put('/notes/{note}', 'NoteController@update');
-Route::delete('/notes/{note}', 'NoteController@destroy');
+Route::get('/categories','CategoryController@index');
+Route::delete('/notes/{id}', 'NoteController@destroy');
+Route::get('/notes','NoteController@indexnote');
+Route::get('/{any}', function() {
+    return view('index');
+}
+)->where('any', '.*');
