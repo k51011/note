@@ -30,8 +30,10 @@
           <el-submenu index="2">
             <template slot="title"><i class="el-icon-menu"></i>並び替え</template>
             <el-menu-item-group>
-              <el-menu-item index="2-1">作成日順</el-menu-item>
-              <el-menu-item index="2-2">更新日順</el-menu-item>
+              <el-menu-item index="2-1" @click="sort(0)">作成日順（降順）</el-menu-item>
+              <el-menu-item index="2-2" @click="sort(1)">作成日順（昇順）</el-menu-item>
+              <el-menu-item index="2-3" @click="sort(2)">更新日順（降順）</el-menu-item>
+              <el-menu-item index="2-4" @click="sort(3)">更新日順（昇順）</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           
@@ -81,6 +83,39 @@ export default {
         this.notes=response.data;
       }) 
     },
+    sort(index){
+      switch(index) {
+      case 0:
+        this.notes.sort(function(a,b){
+          if(a.created_at > b.created_at) return -1;
+          if(a.created_at < b.created_at) return 1;
+          return 0;
+        });
+        break;
+      case 1:
+        this.notes.sort(function(a,b){
+          if(a.created_at < b.created_at) return -1;
+          if(a.created_at > b.created_at) return 1;
+          return 0;
+        });
+        break;
+      case 2:
+        this.notes.sort(function(a,b){
+          if(a.updated_at > b.updated_at) return -1;
+          if(a.updated_at < b.updated_at) return 1;
+          return 0;
+        });
+        break;
+      case 3:
+        this.notes.sort(function(a,b){
+          if(a.updated_at < b.updated_at) return -1;
+          if(a.updated_at > b.updated_at) return 1;
+          return 0;
+        });
+        break;
+      default:
+      }
+    }
   },
   computed: {
     progressNote(){
