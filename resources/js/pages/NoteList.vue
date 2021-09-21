@@ -7,7 +7,7 @@
           <div style="padding: 14px;">
             <span>{{ note.title }}</span>
             <div class="bottom clearfix">
-              <time class="time">{{ note.created_at }}</time>
+              <time class="time">作成日:{{ note.created_at }}</time>
               <RouterLink :to="`/notes/${note.id}`">
                 <el-button type="text" class="button">開く</el-button>
               </RouterLink>
@@ -23,7 +23,8 @@
 export default {
   data(){
     return {
-      notes:{},
+      notes:[],
+      
     }
   },
   mounted() {
@@ -38,6 +39,12 @@ export default {
         }
         this.notes=response.data;
       }) 
+    },
+  },
+  computed: {
+    progressNote(){
+      if(!this.notes) {return;}
+      return this.notes.filter(note=>note.category.color=='green');
     },
   }
 }
@@ -73,4 +80,5 @@ export default {
   .clearfix:after {
       clear: both
   }
+
 </style>

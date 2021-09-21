@@ -70,7 +70,7 @@ export default {
 </script>
 
 <style>
-  .upbutton {
-    margin-top: 13px;
-  }
+  /*.upbutton {*/
+  /*  margin-top: 30px;*/
+  /*}*/
 </style>
