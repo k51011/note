@@ -4185,6 +4185,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4205,6 +4207,43 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.notes = response.data;
       });
+    },
+    sort: function sort(index) {
+      switch (index) {
+        case 0:
+          this.notes.sort(function (a, b) {
+            if (a.created_at > b.created_at) return -1;
+            if (a.created_at < b.created_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 1:
+          this.notes.sort(function (a, b) {
+            if (a.created_at < b.created_at) return -1;
+            if (a.created_at > b.created_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 2:
+          this.notes.sort(function (a, b) {
+            if (a.updated_at > b.updated_at) return -1;
+            if (a.updated_at < b.updated_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 3:
+          this.notes.sort(function (a, b) {
+            if (a.updated_at < b.updated_at) return -1;
+            if (a.updated_at > b.updated_at) return 1;
+            return 0;
+          });
+          break;
+
+        default:
+      }
     }
   },
   computed: {
@@ -4575,6 +4614,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4595,6 +4636,43 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.notes = response.data;
       });
+    },
+    sort: function sort(index) {
+      switch (index) {
+        case 0:
+          this.notes.sort(function (a, b) {
+            if (a.created_at > b.created_at) return -1;
+            if (a.created_at < b.created_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 1:
+          this.notes.sort(function (a, b) {
+            if (a.created_at < b.created_at) return -1;
+            if (a.created_at > b.created_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 2:
+          this.notes.sort(function (a, b) {
+            if (a.updated_at > b.updated_at) return -1;
+            if (a.updated_at < b.updated_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 3:
+          this.notes.sort(function (a, b) {
+            if (a.updated_at < b.updated_at) return -1;
+            if (a.updated_at > b.updated_at) return 1;
+            return 0;
+          });
+          break;
+
+        default:
+      }
     }
   },
   computed: {
@@ -4719,6 +4797,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4739,6 +4819,43 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.notes = response.data;
       });
+    },
+    sort: function sort(index) {
+      switch (index) {
+        case 0:
+          this.notes.sort(function (a, b) {
+            if (a.created_at > b.created_at) return -1;
+            if (a.created_at < b.created_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 1:
+          this.notes.sort(function (a, b) {
+            if (a.created_at < b.created_at) return -1;
+            if (a.created_at > b.created_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 2:
+          this.notes.sort(function (a, b) {
+            if (a.updated_at > b.updated_at) return -1;
+            if (a.updated_at < b.updated_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 3:
+          this.notes.sort(function (a, b) {
+            if (a.updated_at < b.updated_at) return -1;
+            if (a.updated_at > b.updated_at) return 1;
+            return 0;
+          });
+          break;
+
+        default:
+      }
     }
   },
   computed: {
@@ -4865,6 +4982,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4885,6 +5004,43 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.notes = response.data;
       });
+    },
+    sort: function sort(index) {
+      switch (index) {
+        case 0:
+          this.notes.sort(function (a, b) {
+            if (a.created_at > b.created_at) return -1;
+            if (a.created_at < b.created_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 1:
+          this.notes.sort(function (a, b) {
+            if (a.created_at < b.created_at) return -1;
+            if (a.created_at > b.created_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 2:
+          this.notes.sort(function (a, b) {
+            if (a.updated_at > b.updated_at) return -1;
+            if (a.updated_at < b.updated_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 3:
+          this.notes.sort(function (a, b) {
+            if (a.updated_at < b.updated_at) return -1;
+            if (a.updated_at > b.updated_at) return 1;
+            return 0;
+          });
+          break;
+
+        default:
+      }
     }
   },
   computed: {
@@ -5011,6 +5167,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5031,6 +5189,43 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.notes = response.data;
       });
+    },
+    sort: function sort(index) {
+      switch (index) {
+        case 0:
+          this.notes.sort(function (a, b) {
+            if (a.created_at > b.created_at) return -1;
+            if (a.created_at < b.created_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 1:
+          this.notes.sort(function (a, b) {
+            if (a.created_at < b.created_at) return -1;
+            if (a.created_at > b.created_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 2:
+          this.notes.sort(function (a, b) {
+            if (a.updated_at > b.updated_at) return -1;
+            if (a.updated_at < b.updated_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 3:
+          this.notes.sort(function (a, b) {
+            if (a.updated_at < b.updated_at) return -1;
+            if (a.updated_at > b.updated_at) return 1;
+            return 0;
+          });
+          break;
+
+        default:
+      }
     }
   },
   computed: {
@@ -5157,6 +5352,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5177,6 +5374,43 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.notes = response.data;
       });
+    },
+    sort: function sort(index) {
+      switch (index) {
+        case 0:
+          this.notes.sort(function (a, b) {
+            if (a.created_at > b.created_at) return -1;
+            if (a.created_at < b.created_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 1:
+          this.notes.sort(function (a, b) {
+            if (a.created_at < b.created_at) return -1;
+            if (a.created_at > b.created_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 2:
+          this.notes.sort(function (a, b) {
+            if (a.updated_at > b.updated_at) return -1;
+            if (a.updated_at < b.updated_at) return 1;
+            return 0;
+          });
+          break;
+
+        case 3:
+          this.notes.sort(function (a, b) {
+            if (a.updated_at < b.updated_at) return -1;
+            if (a.updated_at > b.updated_at) return 1;
+            return 0;
+          });
+          break;
+
+        default:
+      }
     }
   },
   computed: {
@@ -105199,13 +105433,57 @@ var render = function() {
                       _c(
                         "el-menu-item-group",
                         [
-                          _c("el-menu-item", { attrs: { index: "2-1" } }, [
-                            _vm._v("作成日順")
-                          ]),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-1" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(0)
+                                }
+                              }
+                            },
+                            [_vm._v("作成日順（降順）")]
+                          ),
                           _vm._v(" "),
-                          _c("el-menu-item", { attrs: { index: "2-2" } }, [
-                            _vm._v("更新日順")
-                          ])
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-2" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(1)
+                                }
+                              }
+                            },
+                            [_vm._v("作成日順（昇順）")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-3" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(2)
+                                }
+                              }
+                            },
+                            [_vm._v("更新日順（降順）")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-4" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(3)
+                                }
+                              }
+                            },
+                            [_vm._v("更新日順（昇順）")]
+                          )
                         ],
                         1
                       )
@@ -105653,13 +105931,57 @@ var render = function() {
                       _c(
                         "el-menu-item-group",
                         [
-                          _c("el-menu-item", { attrs: { index: "2-1" } }, [
-                            _vm._v("作成日順")
-                          ]),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-1" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(0)
+                                }
+                              }
+                            },
+                            [_vm._v("作成日順（降順）")]
+                          ),
                           _vm._v(" "),
-                          _c("el-menu-item", { attrs: { index: "2-2" } }, [
-                            _vm._v("更新日順")
-                          ])
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-2" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(1)
+                                }
+                              }
+                            },
+                            [_vm._v("作成日順（昇順）")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-3" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(2)
+                                }
+                              }
+                            },
+                            [_vm._v("更新日順（降順）")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-4" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(3)
+                                }
+                              }
+                            },
+                            [_vm._v("更新日順（昇順）")]
+                          )
                         ],
                         1
                       )
@@ -105896,13 +106218,57 @@ var render = function() {
                       _c(
                         "el-menu-item-group",
                         [
-                          _c("el-menu-item", { attrs: { index: "2-1" } }, [
-                            _vm._v("作成日順")
-                          ]),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-1" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(0)
+                                }
+                              }
+                            },
+                            [_vm._v("作成日順（降順）")]
+                          ),
                           _vm._v(" "),
-                          _c("el-menu-item", { attrs: { index: "2-2" } }, [
-                            _vm._v("更新日順")
-                          ])
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-2" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(1)
+                                }
+                              }
+                            },
+                            [_vm._v("作成日順（昇順）")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-3" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(2)
+                                }
+                              }
+                            },
+                            [_vm._v("更新日順（降順）")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-4" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(3)
+                                }
+                              }
+                            },
+                            [_vm._v("更新日順（昇順）")]
+                          )
                         ],
                         1
                       )
@@ -106125,13 +106491,57 @@ var render = function() {
                       _c(
                         "el-menu-item-group",
                         [
-                          _c("el-menu-item", { attrs: { index: "2-1" } }, [
-                            _vm._v("作成日順")
-                          ]),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-1" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(0)
+                                }
+                              }
+                            },
+                            [_vm._v("作成日順（降順）")]
+                          ),
                           _vm._v(" "),
-                          _c("el-menu-item", { attrs: { index: "2-2" } }, [
-                            _vm._v("更新日順")
-                          ])
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-2" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(1)
+                                }
+                              }
+                            },
+                            [_vm._v("作成日順（昇順）")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-3" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(2)
+                                }
+                              }
+                            },
+                            [_vm._v("更新日順（降順）")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-4" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(3)
+                                }
+                              }
+                            },
+                            [_vm._v("更新日順（昇順）")]
+                          )
                         ],
                         1
                       )
@@ -106368,13 +106778,57 @@ var render = function() {
                       _c(
                         "el-menu-item-group",
                         [
-                          _c("el-menu-item", { attrs: { index: "2-1" } }, [
-                            _vm._v("作成日順")
-                          ]),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-1" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(0)
+                                }
+                              }
+                            },
+                            [_vm._v("作成日順（降順）")]
+                          ),
                           _vm._v(" "),
-                          _c("el-menu-item", { attrs: { index: "2-2" } }, [
-                            _vm._v("更新日順")
-                          ])
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-2" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(1)
+                                }
+                              }
+                            },
+                            [_vm._v("作成日順（昇順）")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-3" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(2)
+                                }
+                              }
+                            },
+                            [_vm._v("更新日順（降順）")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-4" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(3)
+                                }
+                              }
+                            },
+                            [_vm._v("更新日順（昇順）")]
+                          )
                         ],
                         1
                       )
@@ -106611,13 +107065,57 @@ var render = function() {
                       _c(
                         "el-menu-item-group",
                         [
-                          _c("el-menu-item", { attrs: { index: "2-1" } }, [
-                            _vm._v("作成日順")
-                          ]),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-1" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(0)
+                                }
+                              }
+                            },
+                            [_vm._v("作成日順（降順）")]
+                          ),
                           _vm._v(" "),
-                          _c("el-menu-item", { attrs: { index: "2-2" } }, [
-                            _vm._v("更新日順")
-                          ])
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-2" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(1)
+                                }
+                              }
+                            },
+                            [_vm._v("作成日順（昇順）")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-3" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(2)
+                                }
+                              }
+                            },
+                            [_vm._v("更新日順（降順）")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "el-menu-item",
+                            {
+                              attrs: { index: "2-4" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.sort(3)
+                                }
+                              }
+                            },
+                            [_vm._v("更新日順（昇順）")]
+                          )
                         ],
                         1
                       )
