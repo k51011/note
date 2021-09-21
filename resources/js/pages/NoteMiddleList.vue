@@ -41,18 +41,20 @@
       <div>
         <el-row>
           <el-col :span="4" v-for="(note, index) in notes" :key="note.id">
-            <el-card style='height: 300px; width: 150px;' :body-style="{ padding: '0px' }">
-              <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-              <div style="padding: 14px;">
-                <span>{{ note.title }}</span>
-                <div class="bottom clearfix">
-                  <time class="time">作成日:{{ note.created_at }}</time>
-                  <RouterLink :to="`/notes/${note.id}`">
-                    <el-button type="text" class="button">開く</el-button>
-                  </RouterLink>
+            <div v-if="note.category.color=='yellow'">
+              <el-card style='height: 300px; width: 150px;' :body-style="{ padding: '0px' }">
+                <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+                <div style="padding: 14px;">
+                  <span>{{ note.title }}</span>
+                  <div class="bottom clearfix">
+                    <time class="time">作成日:{{ note.created_at }}</time>
+                    <RouterLink :to="`/notes/${note.id}`">
+                      <el-button type="text" class="button">開く</el-button>
+                    </RouterLink>
+                  </div>
                 </div>
-              </div>
-            </el-card>
+              </el-card>
+            </div>
           </el-col>
         </el-row>
       </div>
