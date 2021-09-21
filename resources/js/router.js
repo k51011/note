@@ -3,6 +3,11 @@ import VueRouter from 'vue-router'
 
 // ページコンポーネントをインポートする
 import NoteList from './pages/NoteList.vue'
+import NoteHighList from './pages/NoteHighList.vue'
+import NoteMiddleList from './pages/NoteMiddleList.vue'
+import NoteLowList from './pages/NoteLowList.vue'
+import NoteProgressList from './pages/NoteProgressList.vue'
+import NoteCompletionList from './pages/NoteCompletionList.vue'
 import NoteDetail from './pages/NoteDetail.vue'
 import NoteEdit from './pages/NoteEdit.vue'
 
@@ -16,6 +21,31 @@ const routes = [
     path: '/',
     component: NoteList
   },
+  
+  {
+    path: '/high',
+    component: NoteHighList
+  },
+  
+  {
+    path: '/middle',
+    component: NoteMiddleList
+  },
+  
+  {
+    path: '/low',
+    component: NoteLowList
+  },
+  
+  {
+    path: '/progress',
+    component: NoteProgressList
+  },
+  {
+    path: '/completion',
+    component: NoteCompletionList
+  },
+  
   
   {
     path: '/notes/:id',
