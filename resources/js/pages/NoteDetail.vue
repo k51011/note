@@ -97,6 +97,7 @@ export default {
         }
         this.$message('success')
         this.changeEditStatus();
+        this.$router.go()
       })
     },
   },

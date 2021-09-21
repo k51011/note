@@ -20,5 +20,10 @@ class Note extends Model
     {
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
-
+    
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+    
 }
