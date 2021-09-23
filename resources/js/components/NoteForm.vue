@@ -1,7 +1,5 @@
 <template>
   <div v-show="value" class="photo-form">
-    <!--{{ postForm }}-->
-    <h2 class="title">Note</h2>
     <form action="/notes" method="POST">
         <div class="title">
             <h2>タイトル</h2>
@@ -9,7 +7,18 @@
         </div>
         <div class="content">
             <h2>内容</h2>
-            <textarea v-model='postForm.content' placeholder="内容"></textarea>
+            
+            <div id="editor">
+              <quill-editor 
+                v-model="postForm.content"
+                ref="quillEditor"
+                :options="editorOption"
+              >
+              </quill-editor>
+            </div>
+            
+    
+            <!--<textarea v-model='postForm.content' placeholder="内容"></textarea>-->
         </div>
         <div class="category_id">
             <h2>カテゴリー</h2>
@@ -55,9 +64,15 @@ export default {
         content: '',
         category_id: '',
       },
-      categories:{}
+      categories:{},
+      
+      editorOption: {
+        theme: 'snow'
+      }
+      
     }
   },
+  
   mounted() {
     this.getCategories()
   },
@@ -94,4 +109,19 @@ export default {
   .upbutton {
     margin-top: 13px;
   }
+  
+  #editor {
+    background: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    transition: all 0.2s;
+  }
+  
+  #editor{
+    height: 250px;
+  }
+  #editor .quill-editor {
+    height: 60%
+  }
+
 </style>

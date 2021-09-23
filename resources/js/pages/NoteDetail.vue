@@ -3,12 +3,13 @@
   
   <div v-if="!editStatus && note">
     <h1>{{ note.title }}</h1>
-    <p>{{ note.content }}</p>
+    <div id="preview" class="content ql-editor" v-html="note.content"></div>
   </div>
   <div v-else>
     <note-edit 
       :note = "note"
       :categories = "categories"
+      :editorOption = "editorOption"
       @put-note="putNote"
     >
       
@@ -30,7 +31,8 @@
     <!--</RouterLink>-->
     <!--<form action="/notes/{ id }" method="POST">-->
       <!--<input type="hidden" name="_method" value="DELETE">-->
-    <button class="deletebutton" @click='deleteNote()'>削除</button>
+    
+    <button v-if="!editStatus" class="deletebutton" @click='deleteNote()'>削除</button>
     <!--<el-button class="deletebutton" @click='deleteNote()' type="primary" icon="el-icon-delete"></el-button>-->
     <!--</form>-->
   </div>
@@ -54,7 +56,8 @@ export default {
       note: null,
       fullWidth: false,
       editStatus: false,
-      categories:{}
+      categories: [],
+      editorOption: {}
     }
   },
   methods: {
