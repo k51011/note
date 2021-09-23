@@ -33,43 +33,33 @@ export default {
           return;
         }
         this.notes=response.data;
-        this.getWaitingPercentage();
-        this.getProgressPercentage();
-        this.getCompletionPercentage();
+        this.getPercentage();
       }) 
     },
-    getWaitingPercentage() {
-      var count = 0;
-      for (var i = 0, j = this.notes.length; i < j; i++) {
-        if (this.notes[i].category.color == 'red' || this.notes[i].category.color == 'yellow' || this.notes[i].category.color == 'blue') {
-          count++;
-        }
-      }
-      this.waitingPercentage=count/this.notes.length*100;
-    },
-    getProgressPercentage() {
-      var count = 0;
+    getPercentage() {
+      var countWaiting = 0;
+      var countProgress = 0;
+      var countCompletion = 0;
+      
       for (var i = 0, j = this.notes.length; i < j; i++) {
         if (this.notes[i].category.color == 'green') {
-          count++;
+          countProgress++;
+        }
+        else if (this.notes[i].category.color == 'black') {
+          countCompletion++;
+        }
+        else{
+          countWaiting++;
         }
       }
-      this.progressPercentage=count/this.notes.length*100;
-    },
-    getCompletionPercentage() {
-      var count = 0;
-      for (var i = 0, j = this.notes.length; i < j; i++) {
-        if (this.notes[i].category.color == 'black') {
-          count++;
-        }
-      }
-      this.completionPercentage=count/this.notes.length*100;
+      this.waitingPercentage=countWaiting/this.notes.length*100;
+      this.progressPercentage=countProgress/this.notes.length*100;
+      this.completionPercentage=countCompletion/this.notes.length*100;
     }
   },
   
   mounted() {
     this.getNotes()
-    
   },
 }
 </script>
