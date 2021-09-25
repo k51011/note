@@ -52,9 +52,9 @@ export default {
           countWaiting++;
         }
       }
-      this.waitingPercentage=countWaiting/this.notes.length*100;
-      this.progressPercentage=countProgress/this.notes.length*100;
-      this.completionPercentage=countCompletion/this.notes.length*100;
+      this.waitingPercentage=Math.round(countWaiting/this.notes.length*100);
+      this.progressPercentage=Math.round(countProgress/this.notes.length*100);
+      this.completionPercentage=Math.round(countCompletion/this.notes.length*100);
     }
   },
   

@@ -20,6 +20,7 @@ Auth::routes();
 Route::get('/', 'NoteController@index')->middleware('auth');
 // Route::get('/notes/{note}', 'NoteController@show');
 Route::post('/notes', 'NoteController@store');
+Route::post('/notes/image', 'NoteController@imageStore');
 // Route::put('/notes/update', 'NoteController@update');
 // Route::put('/notes/update', 'NoteController@update');
 Route::put('/notes/{note}', 'NoteController@update');

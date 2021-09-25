@@ -45,7 +45,7 @@
           <el-col :span="4" v-for="(note, index) in notes" :key="note.id">
             <div v-if="note.category.color=='yellow'">
               <el-card style='height: 300px; width: 150px;' :body-style="{ padding: '0px' }">
-                <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+                <img src="images/images-note.png" class="image">
                 <div style="padding: 14px;">
                   <span>{{ note.title }}</span>
                   <div class="bottom clearfix">

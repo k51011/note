@@ -75,7 +75,45 @@ export default {
     button(category_id){
       this.putForm.category_id=category_id;
     },
-  }
+    async LocalToS3(img) {
+			var startIndex = this.putForm.content.indexOf(img); 
+			var endIndex = startIndex + img.length-1;
+			const base64 = this.putForm.content.slice(startIndex+5, endIndex); 
+			// base64文字列をBlob形式のFileに変換する
+			var bin = window.atob(String(base64.replace(/^.*,/, '')));
+			var buffer = new Uint8Array(bin.length);
+			for (var i = 0; i < bin.length; i++) {
+					buffer[i] = bin.charCodeAt(i);
+			}
+			// Blobを作成
+			var blob = new window.Blob([buffer.buffer], {type: 'image/png'});
+			
+			// Blobをfile形式に変換
+			const imgData = new FormData();
+			imgData.append('image', blob);
+			imgData.append('startIndex', startIndex);
+			imgData.append('endIndex', endIndex);
+			imgData.append('editorContens', this.putForm.content);
+			// awsのパスに変換
+			await this.axios.post('/notes/image', imgData).then((res) => {
+				this.putForm.content = 
+					this.putForm.content.slice(0,startIndex+5) + 
+					res.data + 
+					this.putForm.content.slice(endIndex, this.putForm.content.length);
+			})
+		},
+  },
+  watch: {
+		'putForm.content': function(val, oldVal){
+			var img = val.match(/src="data[^"]*"/);
+			if(!img) {
+				this.putForm.content = this.putForm.content;
+				return;
+			}
+			this.LocalToS3(img[0])
+    
+		}
+	},
 }
 </script>
 
@@ -85,17 +123,17 @@ export default {
     top: 50px;
   }
   
-  #editor {
-    background: #fff;
-    border-radius: 4px;
-    padding: 20px;
-    transition: all 0.2s;
-  }
+  /*#editor {*/
+  /*  background: #fff;*/
+  /*  border-radius: 4px;*/
+  /*  padding: 20px;*/
+  /*  transition: all 0.2s;*/
+  /*}*/
   
-  #editor{
-    height: 250px;
-  }
-  #editor .quill-editor {
-    height: 60%
-  }
+  /*#editor{*/
+  /*  height: 350px;*/
+  /*}*/
+  /*#editor .quill-editor {*/
+  /*  height: 60%*/
+  /*}*/
 </style>
