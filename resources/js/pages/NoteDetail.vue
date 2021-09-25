@@ -15,23 +15,19 @@
       
     </note-edit>
   </div>
-    <RouterLink :to="`/`">
-      <el-button type="text" class="button">一覧</el-button>
-    </RouterLink>
-    <!--<RouterLink :to="`/notes/${note.id}/edit`">-->
-    <!--  <el-button @click="changeEditStatus" type="text" class="button">編集</el-button>-->
-    <el-button @click="changeEditStatus" type="text" class="button">
-      <template v-if="editStatus">
-        詳細
-      </template>
-      <template v-else>
-        編集
-      </template>
-    </el-button>
-    <!--</RouterLink>-->
-    <!--<form action="/notes/{ id }" method="POST">-->
-      <!--<input type="hidden" name="_method" value="DELETE">-->
-    
+    <div class="transition">
+      <RouterLink :to="`/`">
+        <el-button type="text" class="button">一覧</el-button>
+      </RouterLink>
+      <el-button @click="changeEditStatus" type="text" class="button">
+        <template v-if="editStatus">
+          詳細
+        </template>
+        <template v-else>
+          編集
+        </template>
+      </el-button>
+    </div>
     <button v-if="!editStatus" class="deletebutton" @click='deleteNote()'>削除</button>
     <!--<el-button class="deletebutton" @click='deleteNote()' type="primary" icon="el-icon-delete"></el-button>-->
     <!--</form>-->
@@ -57,7 +53,31 @@ export default {
       fullWidth: false,
       editStatus: false,
       categories: [],
-      editorOption: {}
+      
+      editorOption: {
+        theme: 'snow',
+        modules: {
+          toolbar:  [
+            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            ['blockquote', 'code-block'],
+
+            [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+            [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+            [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+            [{ 'direction': 'rtl' }],                         // text direction
+
+            [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            [ 'link', 'image'],          // add's image support
+            [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+            [{ 'font': [] }],
+            [{ 'align': [] }],
+
+            ['clean']                                        // remove formatting button
+          ]
+        },
+      }
     }
   },
   methods: {
@@ -117,6 +137,12 @@ export default {
   .deletebutton {
      margin-top: 100px;
      /*font-size: 50%;*/
+  }
+  
+  .transition {
+    position: absolute;
+    top:100px;
+    right:100px;
   }
 </style>
 
