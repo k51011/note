@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Note;
 use Illuminate\Http\Request;
 use Storage;
+use Illuminate\Support\Facades\Auth;
 
 class NoteController extends Controller
 {   
@@ -16,7 +17,16 @@ class NoteController extends Controller
     //categoryテーブルのデータを入手
     public function indexnote(Note $note)
     {
-        return Note::with('category')->get();
+        $notes = Note::with('category')->get();
+        foreach($notes as $note){
+            if($note->isFavorited(Auth::id())){
+                $note['isLiked']=true;
+            }else{
+                $note['isLiked']=false;
+            }
+        }
+        return $notes;
+        
     }
     
     //idを指定してノートのデータを入手

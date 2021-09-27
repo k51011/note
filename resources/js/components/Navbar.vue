@@ -16,8 +16,6 @@
       </button>
       <Progress v-model="showForm2" />
     </div>
-    
-    
   </nav>
 </template>
 
