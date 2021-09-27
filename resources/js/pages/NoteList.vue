@@ -24,6 +24,9 @@
               <RouterLink :to="'/completion'">
                 <el-menu-item index="1-5">完了</el-menu-item>
               </RouterLink>
+              <RouterLink :to="'/favorite'">
+                <el-menu-item index="1-6">お気に入り</el-menu-item>
+              </RouterLink>
             </el-menu-item-group>
           </el-submenu>
           
@@ -36,10 +39,9 @@
               <el-menu-item index="2-4" @click="sort(3)">更新日順（昇順）</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          
         </el-menu>
       </el-aside>
-  
+   
       <div>
         <el-row>
           <el-col :span="4" v-for="(note, index) in notes" :key="note.id">
@@ -49,9 +51,17 @@
                 <span>{{ note.title }}</span>
                 <div class="bottom clearfix">
                   <time class="time">作成日:{{ note.created_at }}</time>
-                  <RouterLink :to="`/notes/${note.id}`">
-                    <el-button type="text" class="button">開く</el-button>
-                  </RouterLink>
+                  <div class="good">
+                    <RouterLink :to="`/notes/${note.id}`">
+                      <el-button type="text" class="button">開く</el-button>
+                    </RouterLink>
+                    <div v-if="note.isLiked === false">
+                      <el-button size="mini" @click.prevent="favorite(note.id)">いいね</el-button>
+                    </div>
+                    <div v-else>
+                      <el-button type="danger" size="mini" @click.prevent="favorite(note.id)">解除</el-button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </el-card>
@@ -67,7 +77,6 @@ export default {
   data(){
     return {
       notes:[],
-      
     }
   },
   mounted() {
@@ -83,6 +92,20 @@ export default {
         this.notes=response.data;
       }) 
     },
+    
+    
+    favorite(note_id) {
+      const id = note_id
+      const array = ["/notes/",id,"/favorites"];
+      const path = array.join('')
+      this.axios.post(path)
+      .then(res => {
+        this.getNotes()
+      }).catch(function(err) {
+        console.log(err)
+      })
+    },
+    
     sort(index){
       switch(index) {
       case 0:
@@ -115,8 +138,13 @@ export default {
         break;
       default:
       }
-    }
+    },
+    
+    
+    
   },
+  
+  
   computed: {
     progressNote(){
       if(!this.notes) {return;}
@@ -151,6 +179,10 @@ export default {
   .bottom {
     margin-top: 13px;
     line-height: 12px;
+  }
+  
+  .good {
+    margin-top: 13px;
   }
 
   .button {

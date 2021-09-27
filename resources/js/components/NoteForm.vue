@@ -25,7 +25,21 @@
             <el-row>
                 <div style="display: flex; justify-content: space-around;">
                     <div v-for='(category,index) in categories'>
-                      <el-button @click='button(category.id)' type="danger" plain>{{ category.name }}</el-button>
+                      <div v-if="category.color=='red'">
+                        <el-button @click='button(category.id)' type="danger" plain>{{ category.name }}</el-button>
+                      </div>
+                      <div v-else-if="category.color=='yellow'">
+                        <el-button @click='button(category.id)' type="warning" plain>{{ category.name }}</el-button>
+                      </div>
+                      <div v-else-if="category.color=='blue'">
+                        <el-button @click='button(category.id)' type="primary" plain>{{ category.name }}</el-button>
+                      </div>
+                      <div v-else-if="category.color=='green'">
+                        <el-button @click='button(category.id)' type="success" plain>{{ category.name }}</el-button>
+                      </div>
+                      <div v-else>
+                        <el-button @click='button(category.id)' type="info" plain>{{ category.name }}</el-button>
+                      </div>
                     </div>
                 </div>
             </el-row>
@@ -35,7 +49,8 @@
         </div>
         
         <!--<el-button type="primary" @click='postNote'>Upload<i class="el-icon-upload el-icon-right"></i></el-button>-->
-        <input class="upbutton" type="button" value="Upload" @click='postNote'/>
+        <!--<input class="upbutton" type="button" value="Upload" @click='postNote'/>-->
+        <el-button class="upbutton" type="primary" value="Upload" size="small" @click='postNote'>Upload<i class="el-icon-upload el-icon-right"></i></el-button>
     </form>
   </div>
 </template>
@@ -122,6 +137,8 @@ export default {
     button(category_id){
       this.postForm.category_id=category_id;
     },
+  
+  
     
 		async LocalToS3(img) {
 			var startIndex = this.postForm.content.indexOf(img); 
@@ -152,6 +169,8 @@ export default {
 		},
   },
   
+  
+  
   watch: {
 		'postForm.content': function(val, oldVal){
 			var img = val.match(/src="data[^"]*"/);
@@ -168,9 +187,9 @@ export default {
 </script>
 
 <style>
-  .upbutton {
-    margin-top: 13px;
-  }
+  /*.upbutton {*/
+  /*  margin-top: 13px;*/
+  /*}*/
   
   #editor {
     background: #fff;

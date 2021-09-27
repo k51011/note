@@ -27,6 +27,12 @@ Route::put('/notes/{note}', 'NoteController@update');
 Route::get('/categories','CategoryController@index');
 Route::delete('/notes/{id}', 'NoteController@destroy');
 Route::get('/notes','NoteController@indexnote');
+
+Route::get('/notes/{note}/check', 'FavoriteController@check')->name('favorite.check');
+Route::resource('notes.favorites', 'FavoriteController', [
+ 'only' => ['store'],
+]);
+
 Route::get('/{any}', function() {
     return view('index');
 }

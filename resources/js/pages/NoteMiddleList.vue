@@ -24,6 +24,9 @@
               <RouterLink :to="'/completion'">
                 <el-menu-item index="1-5">完了</el-menu-item>
               </RouterLink>
+              <RouterLink :to="'/favorite'">
+                <el-menu-item index="1-6">お気に入り</el-menu-item>
+              </RouterLink>
             </el-menu-item-group>
           </el-submenu>
           
@@ -42,22 +45,32 @@
   
       <div>
         <el-row>
-          <el-col :span="4" v-for="(note, index) in notes" :key="note.id">
-            <div v-if="note.category.color=='yellow'">
-              <el-card style='height: 300px; width: 150px;' :body-style="{ padding: '0px' }">
-                <img src="images/images-note.png" class="image">
-                <div style="padding: 14px;">
-                  <span>{{ note.title }}</span>
-                  <div class="bottom clearfix">
-                    <time class="time">作成日:{{ note.created_at }}</time>
-                    <RouterLink :to="`/notes/${note.id}`">
-                      <el-button type="text" class="button">開く</el-button>
-                    </RouterLink>
+          <div class="wrapper">
+            <el-col v-for="(note, index) in notes" :key="note.id">
+              <div v-if="note.category.color=='yellow'">
+                <el-card style='height: 300px; width: 150px;' :body-style="{ padding: '0px' }">
+                  <img src="images/images-note.png" class="image">
+                  <div style="padding: 14px;">
+                    <span>{{ note.title }}</span>
+                    <div class="bottom clearfix">
+                      <time class="time">作成日:{{ note.created_at }}</time>
+                      <div class="good">
+                        <RouterLink :to="`/notes/${note.id}`">
+                          <el-button type="text" class="button">開く</el-button>
+                        </RouterLink>
+                        <div v-if="note.isLiked === false">
+                          <el-button size="mini" @click.prevent="favorite(note.id)">いいね</el-button>
+                        </div>
+                        <div v-else>
+                          <el-button type="danger" size="mini" @click.prevent="favorite(note.id)">解除</el-button>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </el-card>
-            </div>
-          </el-col>
+                </el-card>
+              </div>
+            </el-col>
+          </div>
         </el-row>
       </div>
     </el-container>  
@@ -84,6 +97,17 @@ export default {
         }
         this.notes=response.data;
       }) 
+    },
+    favorite(note_id) {
+      const id = note_id
+      const array = ["/notes/",id,"/favorites"];
+      const path = array.join('')
+      this.axios.post(path)
+      .then(res => {
+        this.getNotes()
+      }).catch(function(err) {
+        console.log(err)
+      })
     },
     sort(index){
       switch(index) {
@@ -159,7 +183,11 @@ export default {
     padding: 0;
     float: right;
   }
-
+  
+  .good {
+    margin-top: 13px;
+  }
+  
   .image {
     width: 100%;
     display: block;
@@ -179,4 +207,7 @@ export default {
     color: #333;
   }
 
+  .wrapper {
+    display: flex;
+  }
 </style>

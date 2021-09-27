@@ -24,7 +24,21 @@
             <el-row v-if="categories">
                 <div style="display: flex;">
                     <div v-for='(category,index) in categories'>
-                      <el-button name="category_id" @click='button(category.id)' type="danger" plain>{{ category.name }}</el-button>
+                      <div v-if="category.color=='red'">
+                        <el-button @click='button(category.id)' type="danger" plain>{{ category.name }}</el-button>
+                      </div>
+                      <div v-else-if="category.color=='yellow'">
+                        <el-button @click='button(category.id)' type="warning" plain>{{ category.name }}</el-button>
+                      </div>
+                      <div v-else-if="category.color=='blue'">
+                        <el-button @click='button(category.id)' type="primary" plain>{{ category.name }}</el-button>
+                      </div>
+                      <div v-else-if="category.color=='green'">
+                        <el-button @click='button(category.id)' type="success" plain>{{ category.name }}</el-button>
+                      </div>
+                      <div v-else>
+                        <el-button @click='button(category.id)' type="info" plain>{{ category.name }}</el-button>
+                      </div>
                     </div>
                 </div>
             </el-row>
@@ -34,7 +48,8 @@
         </div>
       
       <!--<el-button type="primary" @click='putNote'>Upload<i class="el-icon-upload el-icon-right"></i></el-button>-->
-        <input class="upbutton" type="button" value="Upload" @click='putNote'/>
+        <!--<input class="upbutton" type="button" value="Upload" @click='putNote'/>-->
+        <el-button class="upbutton" type="primary" value="Upload" size="small" @click='putNote'>Upload<i class="el-icon-upload el-icon-right"></i></el-button>
       </div>
     </form>
   </div>

@@ -8,6 +8,7 @@ import NoteMiddleList from './pages/NoteMiddleList.vue'
 import NoteLowList from './pages/NoteLowList.vue'
 import NoteProgressList from './pages/NoteProgressList.vue'
 import NoteCompletionList from './pages/NoteCompletionList.vue'
+import FavoriteList from './pages/FavoriteList.vue'
 import NoteDetail from './pages/NoteDetail.vue'
 import NoteEdit from './pages/NoteEdit.vue'
 
@@ -44,6 +45,10 @@ const routes = [
   {
     path: '/completion',
     component: NoteCompletionList
+  },
+  {
+    path: '/favorite',
+    component: FavoriteList
   },
   
   

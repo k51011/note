@@ -28,7 +28,7 @@
         </template>
       </el-button>
     </div>
-    <button v-if="!editStatus" class="deletebutton" @click='deleteNote()'>削除</button>
+    <button v-if="!editStatus" class="deletebutton" @click='deleteNote()'><i class="el-icon-delete"></i></button>
     <!--<el-button class="deletebutton" @click='deleteNote()' type="primary" icon="el-icon-delete"></el-button>-->
     <!--</form>-->
   </div>
@@ -136,7 +136,7 @@ export default {
 <style>
   .deletebutton {
      margin-top: 100px;
-     /*font-size: 50%;*/
+     font-size: 150%;
   }
   
   .transition {
