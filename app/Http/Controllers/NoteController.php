@@ -16,8 +16,8 @@ class NoteController extends Controller
     
     //categoryテーブルのデータを入手
     public function indexnote(Note $note)
-    {
-        $notes = Note::with('category')->get();
+    {   
+        $notes = Note::where('user_id',Auth::id())->with('category')->get();
         foreach($notes as $note){
             if($note->isFavorited(Auth::id())){
                 $note['isLiked']=true;
@@ -52,25 +52,37 @@ class NoteController extends Controller
         $input_note = $request->input();
         $note->fill($input_note)->save();
     }
-    
+
     //指定したidのノートを削除
     public function destroy($id)
     {
         Note::where("id",$id)->delete();
     }
+ 
     
-    //画像をs3に保存
-    public function imageStore(Request $request) {
-        // s3アップロード開始
+    public function imageStore(Request $request)
+    {
+      //見やすいので事前に定義しておく
+        $disk = Storage::disk('s3');
+      //postされてきた画像
         $image = $request->file('image');
-        info(base64_decode($image));
-        // imgフォルダに格納
-        $path = Storage::disk('s3')->putFile('', $image, 'public');
-
-        // フルパスの取得
-        $fullPath = Storage::disk('s3')->url($path);
-        return $fullPath;
+      //putFileというのは、画像を保存して、その保存したパス（バケット以下を返してくれる関数、第一引数ディレクトリ名、第二引数画像データ、第３引数公開・非公開）
+        $path = $disk->putFile('images', $image,'public');
+        return $disk->url($path);
     }
     
+    // public function imageStore(Request $request)
+    // {
+    //   //見やすいので事前に定義しておく
+    //     $disk = Storage::disk('s3');
+    //   //postされてきた画像
+    //     $image = $request->image;
+    //   //putFileというのは、画像を保存して、その保存したパス（バケット以下を返してくれる関数、第一引数ディレクトリ名、第二引数画像データ、第３引数公開・非公開）
+    //     $path = $disk->putFile('images', $image,'public');
+
+    //     //$pathには保存してあるパスが返っていることがわかる
+    //     //なのでデータベースに$pathを保存することで呼び出せるようになる
+    //     return response()->json(['response'=>$path],200);
+    // }
     
 }
