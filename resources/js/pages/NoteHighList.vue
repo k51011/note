@@ -46,9 +46,9 @@
       <div>
         <el-row>
           <div class="wrapper">
-            <el-col v-for="(note, index) in notes" :key="note.id">
+            <el-col :span="4" v-for="(note, index) in notes" :key="note.id">
               <div v-if="note.category.color=='red'">
-                <el-card style='height: 300px; width: 150px;' :body-style="{ padding: '0px' }">
+                <el-card style='height: 300px;' :body-style="{ padding: '0px' }">
                   <img src="images/images-note.png" class="image">
                   <div style="padding: 14px;">
                     <span>{{ note.title }}</span>
@@ -207,7 +207,4 @@ export default {
     color: #333;
   }
   
-  .wrapper {
-    display: flex;
-  }
 </style>

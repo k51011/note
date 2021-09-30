@@ -9,12 +9,17 @@
           <i class="icon ion-md-add"></i>
           note作成
         </button>
+        <NoteForm v-model="showForm" />
+        <button class="button" @click="showForm2 = ! showForm2">
+          進捗確認
+        </button>
+        <Progress v-model="showForm2" />
+        
+        <button class="button" @click="logout()">logout</button>
+        <!--<RouterLink :to="`/logout`">-->
+        <!--  <button>logout</button>-->
+        <!--</RouterLink>-->
       </div>
-      <NoteForm v-model="showForm" />
-      <button class="button" @click="showForm2 = ! showForm2">
-        進捗確認
-      </button>
-      <Progress v-model="showForm2" />
     </div>
   </nav>
 </template>
@@ -34,6 +39,11 @@ export default {
       showForm2: false
     }
   },
+  methods: {
+    logout(){
+      this.axios.post('logout')
+    }
+  }
 }
 </script>
 

@@ -45,7 +45,7 @@
       <div>
         <el-row>
           <el-col :span="4" v-for="(note, index) in notes" :key="note.id">
-            <el-card style='height: 300px; width: 150px;' :body-style="{ padding: '0px' }">
+            <el-card style='height: 300px;' :body-style="{ padding: '0px' }">
               <img src="images/images-note.png" class="image">
               <div style="padding: 14px;">
                 <span>{{ note.title }}</span>

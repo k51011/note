@@ -15,14 +15,18 @@
 
 Auth::routes();
 
+Route::get('login/{provider}', 'Auth\LoginController@socialLogin');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+Route::post('/logout','Auth\LoginController@logout');
+
 // Route::get('/home', 'HomeController@index')->name('home'); 
 // Route::get('/notes/create', 'NoteController@create');
 Route::get('/', 'NoteController@index')->middleware('auth');
 // Route::get('/notes/{note}', 'NoteController@show');
 Route::post('/notes', 'NoteController@store');
+
 Route::post('/notes/image', 'NoteController@imageStore');
-// Route::put('/notes/update', 'NoteController@update');
-// Route::put('/notes/update', 'NoteController@update');
+
 Route::put('/notes/{note}', 'NoteController@update');
 Route::get('/categories','CategoryController@index');
 Route::delete('/notes/{id}', 'NoteController@destroy');
