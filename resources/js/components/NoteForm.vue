@@ -1,6 +1,5 @@
 <template>
   <div v-show="value" class="photo-form">
-    {{ postForm.content }}
     <form action="/notes" method="POST">
         <div class="title">
             <h2>タイトル</h2>
@@ -17,19 +16,6 @@
               >
               </quill-editor>
             </div>
-            
-            
-            <!--<Editor -->
-            <!--  v-model="postForm.content"-->
-            <!--  :serverUrl="imgUrl" -->
-            <!--  :imgData="imgData" -->
-            <!--  :msg="postForm.content" -->
-            <!--  @changeContent="changeContent" -->
-            <!--  ref="editor"-->
-            <!--  >-->
-                
-            <!--</Editor>-->
-            
             
     
             <!--<textarea v-model='postForm.content' placeholder="内容"></textarea>-->
@@ -87,17 +73,6 @@ export default {
       return this.categories.filter(category=>category.id===this.postForm.category_id)
     },
     
-    
-    // data(){
-    //   content:""
-    // },
-    // imgUrl(){
-    //   return this.SERVER_PATH+"dapp/backmgr/dapp/open/uploadImg"; 
-    // },
-    // imgData(){
-    //     return {type:'img',token:this.token} 
-    // },
-  
   },
   data(){
     return {
@@ -167,145 +142,46 @@ export default {
     },
   
 
-    
-    // changeContent(value){
-    //   this.content = value;
-    // },
-    
-    
-    
-		// async LocalToS3(img) {
-		// 	var startIndex = this.postForm.content.indexOf(img); 
-		// 	var endIndex = startIndex + img.length-1;
-		// 	const base64 = this.postForm.content.slice(startIndex+5, endIndex); 
-		// 	// base64文字列をBlob形式のFileに変換する
-		// 	var bin = window.atob(String(base64.replace(/^.*,/, '')));
-		// 	var buffer = new Uint8Array(bin.length);
-		// 	for (var i = 0; i < bin.length; i++) {
-		// 			buffer[i] = bin.charCodeAt(i);
-		// 	}
-		// 	// Blobを作成
-		// 	var blob = new window.Blob([buffer.buffer], {type: 'image/png'});
+		async LocalToS3(img) {
+			var startIndex = this.postForm.content.indexOf(img); 
+			var endIndex = startIndex + img.length-1;
+			const base64 = this.postForm.content.slice(startIndex+5, endIndex); 
+			// base64文字列をBlob形式のFileに変換する
+			var bin = window.atob(String(base64.replace(/^.*,/, '')));
+			var buffer = new Uint8Array(bin.length);
+			for (var i = 0; i < bin.length; i++) {
+					buffer[i] = bin.charCodeAt(i);
+			}
+			// Blobを作成
+			var blob = new window.Blob([buffer.buffer], {type: 'image/png'});
 			
-		// 	// Blobをfile形式に変換
-		// 	const imgData = new FormData();
-		// 	imgData.append('image', blob);
-		// 	imgData.append('startIndex', startIndex);
-		// 	imgData.append('endIndex', endIndex);
-		// 	imgData.append('editorContens', this.postForm.content);
-		// 	// awsのパスに変換
-		// 	await this.axios.post('/notes/image', imgData).then((res) => {
-		// 		this.postForm.content = 
-		// 			this.postForm.content.slice(0,startIndex+5) + 
-		// 			res.data + 
-		// 			this.postForm.content.slice(endIndex, this.postForm.content.length);
-		// 	})
-		// },
-  // },
+			// Blobをfile形式に変換
+			const imgData = new FormData();
+			imgData.append('image', blob);
+			imgData.append('startIndex', startIndex);
+			imgData.append('endIndex', endIndex);
+			imgData.append('editorContens', this.postForm.content);
+			// awsのパスに変換
+			await this.axios.post('/notes/image', imgData).then((res) => {
+				this.postForm.content = 
+					this.postForm.content.slice(0,startIndex+5) + 
+					res.data + 
+					this.postForm.content.slice(endIndex, this.postForm.content.length);
+			})
+		},
+  },
   
   
   
-  // watch: {
-		// 'postForm.content': function(val, oldVal){
-		// 	var img = val.match(/src="data[^"]*"/);
-		// 	if(!img) {
-		// 		this.postForm.content = this.postForm.content;
-		// 		return;
-		// 	}
-		// 	this.LocalToS3(img[0])
-		// }
-  // }
-  	
-//   getBase64 (file) {
-//       return new Promise((resolve, reject) => {
-//         const reader = new FileReader()
-//         reader.readAsDataURL(file)
-//         reader.onload = () => resolve(reader.result)
-//         reader.onerror = error => reject(error)
-//       })
-//     },
-		
-// 	},
-//   watch: {
-// 		'postForm.content': function(newVal,oldVal){
-// 			var img = newVal.match(/src="data[^"]*"/);
-// 			if(!img) {
-// 				this.postForm.content = this.postForm.content;
-// 				return;
-// 			}
-// 			var formData = new FormData();
-// 			this.getBase64(img[0])
-// 			formData.append("img",this.img);
-// 			this.axios.post('/notes/image', formData).then((res) => {
-// 				this.postForm.content = this.postFrom.content + res.data
-// 			})
-// 		}
-// 	},
-  
-  
-//   components:{
-//     Editor
-//   },
-//   watch:{
-//   content(newVal,oldVal){
-//       this.$refs.editor.getContent(newVal);
-//     }
-//   }
-//     async postImage(image) {
-// 			const config = {
-//         header: {
-//           "Content-Type": "multipart/form-data"
-//         }
-//       };
-// 			var formData = new FormData();
-// 			formData.append("image",image);
-// 			await this.axios.post('/notes/image', formData, config).then((res) => {
-// 			  console.log(res.data);
-// 				this.postForm.content = this.postFrom.content + res.data
-// 			})
-// 		},
-
-  
-  
-//   },
-//   watch: {
-// 		'postForm.content': function(newVal,oldVal){
-// 			var image = newVal.match(/src="data[^"]*"/);
-// 			if(!image) {
-// 				this.postForm.content = this.postForm.content;
-// 				return;
-// 			}
-// 			this.postImage(image[0]);
-// 		}
-// 	},
-  
-  
-  
-  
-  
-  
-//   watch: {
-// 		'postForm.content': function(newVal,oldVal){
-// 			var image = newVal.match(/src="data[^"]*"/);
-// 			if(!image) {
-// 				this.postForm.content = this.postForm.content;
-// 				return;
-// 			}
-// 			const config = {
-//         header: {
-//           "Content-Type": "multipart/form-data"
-//         }
-//       };
-// 			var formData = new FormData();
-// 			formData.append("image",this.image);
-// 			this.axios.post('/notes/image', formData, config).then((res) => {
-// 				this.postForm.content = this.postFrom.content + res.data
-// 			})
-// 		}
-// 	},
-  
-    
-    
+  watch: {
+		'postForm.content': function(val, oldVal){
+			var img = val.match(/src="data[^"]*"/);
+			if(!img) {
+				this.postForm.content = this.postForm.content;
+				return;
+			}
+			this.LocalToS3(img[0])
+		}
   }
 }
 </script>

@@ -49,7 +49,21 @@
             <el-col v-for="(note, index) in notes" :key="note.id">
               <div v-if="note.isLiked === true">
                 <el-card style='height: 300px; width: 150px;' :body-style="{ padding: '0px' }">
-                  <img src="images/images-note.png" class="image">
+                  <div v-show="note.category.color=='red'">
+                    <img src="images/images-note.png" class="image" style="border:solid 2px red">
+                  </div>
+                  <div v-show="note.category.color=='yellow'">
+                    <img src="images/images-note.png" class="image" style="border:solid 2px yellow">
+                  </div>
+                  <div v-show="note.category.color=='blue'">
+                    <img src="images/images-note.png" class="image" style="border:solid 2px blue">
+                  </div>
+                  <div v-show="note.category.color=='green'">
+                    <img src="images/images-note.png" class="image" style="border:solid 2px green">
+                  </div>
+                  <div v-show="note.category.color=='black'">
+                    <img src="images/images-note.png" class="image" style="border:solid 2px">
+                  </div>
                   <div style="padding: 14px;">
                     <span>{{ note.title }}</span>
                     <div class="bottom clearfix">

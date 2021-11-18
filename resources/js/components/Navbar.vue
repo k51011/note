@@ -14,11 +14,16 @@
           進捗確認
         </button>
         <Progress v-model="showForm2" />
-        
-        <button class="button" @click="logout()">logout</button>
-        <!--<RouterLink :to="`/logout`">-->
-        <!--  <button>logout</button>-->
-        <!--</RouterLink>-->
+        <div　v-show="$route.path === '/'">
+          <el-dropdown trigger="click">
+            <span class="el-dropdown-link">
+              <i class="el-icon-s-custom"></i>
+            </span>
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item @click.native="logout()">logout</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
       </div>
     </div>
   </nav>
@@ -42,6 +47,9 @@ export default {
   methods: {
     logout(){
       this.axios.post('logout')
+      .then((response)=>{
+        this.$router.go()
+      })
     }
   }
 }
@@ -50,5 +58,8 @@ export default {
 <style>
   .button {
     margin-right: 10px;
+  }
+  .el-icon-s-custom {
+    font-size: 200%;
   }
 </style>
