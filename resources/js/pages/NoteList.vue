@@ -43,10 +43,26 @@
       </el-aside>
    
       <div>
+        <i class="el-icon-search"></i>
+        <input type="text" class="search" v-model="keyword" placeholder="検索（例：note1)">
         <el-row>
-          <el-col :span="4" v-for="(note, index) in notes" :key="note.id">
+          <el-col :span="4" v-for="note in filteredNotes" :key="note.id">
             <el-card style='height: 300px;' :body-style="{ padding: '0px' }">
-              <img src="images/images-note.png" class="image">
+              <div v-show="note.category.color=='red'">
+                <img src="images/images-note.png" class="image" style="border:solid 2px red">
+              </div>
+              <div v-show="note.category.color=='yellow'">
+                <img src="images/images-note.png" class="image" style="border:solid 2px yellow">
+              </div>
+              <div v-show="note.category.color=='blue'">
+                <img src="images/images-note.png" class="image" style="border:solid 2px blue">
+              </div>
+              <div v-show="note.category.color=='green'">
+                <img src="images/images-note.png" class="image" style="border:solid 2px green">
+              </div>
+              <div v-show="note.category.color=='black'">
+                <img src="images/images-note.png" class="image" style="border:solid 2px">
+              </div>
               <div style="padding: 14px;">
                 <span>{{ note.title }}</span>
                 <div class="bottom clearfix">
@@ -77,6 +93,7 @@ export default {
   data(){
     return {
       notes:[],
+      keyword: ''
     }
   },
   mounted() {
@@ -166,6 +183,28 @@ export default {
       if(!this.notes) {return;}
       return this.notes.filter(note=>note.category.color=='blue');
     },
+    
+    filteredNotes: function() {
+
+        var notes = [];
+
+        for(var i in this.notes) {
+
+            var note = this.notes[i];
+
+            if(note.title.indexOf(this.keyword) !== -1 ) {
+
+                notes.push(note);
+
+            }
+
+        }
+
+        return notes;
+
+    }
+    
+    
   }
 }
 </script>
@@ -207,6 +246,10 @@ export default {
   
   .el-aside {
     color: #333;
+  }
+  
+  .search {
+    margin-bottom: 13px;
   }
 
 </style>

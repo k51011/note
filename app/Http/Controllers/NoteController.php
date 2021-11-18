@@ -29,6 +29,105 @@ class NoteController extends Controller
         
     }
     
+    public function indexHighNote(Note $note)
+    {   
+        // $notes = Note::where('user_id',Auth::id())->with('category')->get();
+        $notes = Note::where('user_id',Auth::id())->whereHas('Category',function($q){
+            $q->where('color','red');
+        })->get();
+        foreach($notes as $note){
+            if($note->isFavorited(Auth::id())){
+                $note['isLiked']=true;
+            }else{
+                $note['isLiked']=false;
+            }
+        }
+        return $notes;
+        
+    }
+    
+    public function indexMiddleNote(Note $note)
+    {   
+        // $notes = Note::where('user_id',Auth::id())->with('category')->get();
+        $notes = Note::where('user_id',Auth::id())->whereHas('Category',function($q){
+            $q->where('color','yellow');
+        })->get();
+        foreach($notes as $note){
+            if($note->isFavorited(Auth::id())){
+                $note['isLiked']=true;
+            }else{
+                $note['isLiked']=false;
+            }
+        }
+        return $notes;
+        
+    }
+    
+    public function indexLowNote(Note $note)
+    {   
+        // $notes = Note::where('user_id',Auth::id())->with('category')->get();
+        $notes = Note::where('user_id',Auth::id())->whereHas('Category',function($q){
+            $q->where('color','blue');
+        })->get();
+        foreach($notes as $note){
+            if($note->isFavorited(Auth::id())){
+                $note['isLiked']=true;
+            }else{
+                $note['isLiked']=false;
+            }
+        }
+        return $notes;
+        
+    }
+    
+    public function indexProgressNote(Note $note)
+    {   
+        // $notes = Note::where('user_id',Auth::id())->with('category')->get();
+        $notes = Note::where('user_id',Auth::id())->whereHas('Category',function($q){
+            $q->where('color','green');
+        })->get();
+        foreach($notes as $note){
+            if($note->isFavorited(Auth::id())){
+                $note['isLiked']=true;
+            }else{
+                $note['isLiked']=false;
+            }
+        }
+        return $notes;
+        
+    }
+    
+    public function indexCompletionNote(Note $note)
+    {   
+        // $notes = Note::where('user_id',Auth::id())->with('category')->get();
+        $notes = Note::where('user_id',Auth::id())->whereHas('Category',function($q){
+            $q->where('color','black');
+        })->get();
+        foreach($notes as $note){
+            if($note->isFavorited(Auth::id())){
+                $note['isLiked']=true;
+            }else{
+                $note['isLiked']=false;
+            }
+        }
+        return $notes;
+        
+    }
+    
+    public function indexFavoriteNote(Note $note)
+    {   
+        // $notes = Note::where('user_id',Auth::id())->where('Favorite',isFavorited(Auth::id()))->get();
+        $notes = Note::where('user_id',Auth::id())->whereHas('Favorite',function($q){
+            $q->where('user_id',Auth::id());
+        })->get();
+
+        foreach($notes as $note){
+            $note['isLiked']=true;
+        }
+        return $notes;
+        
+    }
+    
     //idを指定してノートのデータを入手
     public function show(String $id, Note $note)
     {   

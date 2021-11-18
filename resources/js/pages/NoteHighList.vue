@@ -45,32 +45,28 @@
   
       <div>
         <el-row>
-          <div class="wrapper">
-            <el-col :span="4" v-for="(note, index) in notes" :key="note.id">
-              <div v-if="note.category.color=='red'">
-                <el-card style='height: 300px;' :body-style="{ padding: '0px' }">
-                  <img src="images/images-note.png" class="image">
-                  <div style="padding: 14px;">
-                    <span>{{ note.title }}</span>
-                    <div class="bottom clearfix">
-                      <time class="time">作成日:{{ note.created_at }}</time>
-                      <div class="good">
-                        <RouterLink :to="`/notes/${note.id}`">
-                          <el-button type="text" class="button">開く</el-button>
-                        </RouterLink>
-                        <div v-if="note.isLiked === false">
-                          <el-button size="mini" @click.prevent="favorite(note.id)">いいね</el-button>
-                        </div>
-                        <div v-else>
-                          <el-button type="danger" size="mini" @click.prevent="favorite(note.id)">解除</el-button>
-                        </div>
-                      </div>
+          <el-col :span="4" v-for="(note, index) in notes" :key="note.id">
+            <el-card style='height: 300px;' :body-style="{ padding: '0px' }">
+              <img src="images/images-note.png" class="image" style="border:solid 2px red">
+              <div style="padding: 14px;">
+                <span>{{ note.title }}</span>
+                <div class="bottom clearfix">
+                  <time class="time">作成日:{{ note.created_at }}</time>
+                  <div class="good">
+                    <RouterLink :to="`/notes/${note.id}`">
+                      <el-button type="text" class="button">開く</el-button>
+                    </RouterLink>
+                    <div v-if="note.isLiked === false">
+                      <el-button size="mini" @click.prevent="favorite(note.id)">いいね</el-button>
+                    </div>
+                    <div v-else>
+                      <el-button type="danger" size="mini" @click.prevent="favorite(note.id)">解除</el-button>
                     </div>
                   </div>
-                </el-card>
+                </div>
               </div>
-            </el-col>
-          </div>
+            </el-card>
+          </el-col>
         </el-row>
       </div>
     </el-container>  
@@ -90,7 +86,7 @@ export default {
   },
   methods: {
     getNotes(){
-      this.axios.get('/notes')
+      this.axios.get('/notes/high')
       .then((response)=>{
         if(response.status!=200){
           return;
@@ -143,28 +139,6 @@ export default {
       }
     }
   },
-  computed: {
-    progressNote(){
-      if(!this.notes) {return;}
-      return this.notes.filter(note=>note.category.color=='green');
-    },
-    completionNote(){
-      if(!this.notes) {return;}
-      return this.notes.filter(note=>note.category.color=='black');
-    },
-    highNote(){
-      if(!this.notes) {return;}
-      return this.notes.filter(note=>note.category.color=='red');
-    },
-    middleNote(){
-      if(!this.notes) {return;}
-      return this.notes.filter(note=>note.category.color=='yellow');
-    },
-    lowNote(){
-      if(!this.notes) {return;}
-      return this.notes.filter(note=>note.category.color=='blue');
-    },
-  }
 }
 </script>
 
@@ -178,14 +152,14 @@ export default {
     margin-top: 13px;
     line-height: 12px;
   }
-  
-  .good {
-    margin-top: 13px;
-  }
 
   .button {
     padding: 0;
     float: right;
+  }
+  
+  .good {
+    margin-top: 13px;
   }
 
   .image {
@@ -206,5 +180,5 @@ export default {
   .el-aside {
     color: #333;
   }
-  
+
 </style>

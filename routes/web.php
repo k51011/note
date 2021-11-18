@@ -11,8 +11,6 @@
 |
 */
 
-
-
 Auth::routes();
 
 Route::get('login/{provider}', 'Auth\LoginController@socialLogin');
@@ -30,7 +28,16 @@ Route::post('/notes/image', 'NoteController@imageStore');
 Route::put('/notes/{note}', 'NoteController@update');
 Route::get('/categories','CategoryController@index');
 Route::delete('/notes/{id}', 'NoteController@destroy');
+
 Route::get('/notes','NoteController@indexnote');
+
+Route::get('/notes/high','NoteController@indexHighNote');
+Route::get('/notes/middle','NoteController@indexMiddleNote');
+Route::get('/notes/low','NoteController@indexLowNote');
+Route::get('/notes/progress','NoteController@indexProgressNote');
+Route::get('/notes/completion','NoteController@indexCompletionNote');
+Route::get('/notes/favorite','NoteController@indexFavoriteNote');
+
 
 Route::get('/notes/{note}/check', 'FavoriteController@check')->name('favorite.check');
 Route::resource('notes.favorites', 'FavoriteController', [
